@@ -1,0 +1,34 @@
+h1 {
+    font-family: Roboto;
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
+div {
+    position: relative;
+    left: 5%;
+}
+nav {
+    background-color: #1e2c6f;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 266px;
+    box-shadow: 2px 4px #cdcdcd;
+}
+nav a {
+    padding: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #1e2c6f;
+    color: #ffffff;
+    border-radius: 30px;
+}
+
+nav a:hover {
+    color: white;
+    background-color: #42545C;
+}
+nav a.active {
+    background-color: black;
+}

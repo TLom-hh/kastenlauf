@@ -1,0 +1,10 @@
+div {
+    background-color: #1e2c6f;
+    height: 200px;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    margin: 10px;
+}

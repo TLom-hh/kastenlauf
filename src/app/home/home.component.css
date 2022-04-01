@@ -1,0 +1,32 @@
+div.carousel {
+    background-color: lightgray;
+}
+img {
+    position: relative;
+    left: 25%;
+}
+div.welcome {
+    background-color: #f1f1f1;
+}
+
+h3 {
+    position: relative;
+    left: 10px;
+    color: #1e2e6f;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+p {
+    position: relative;
+    left: 15px;
+    line-height: 2.2;
+}
+div.gruppen{
+    position: relative;
+    left: 50px;
+    margin-bottom: 100px;
+}
+tab{
+    position: relative;
+    left: 40px;
+}
