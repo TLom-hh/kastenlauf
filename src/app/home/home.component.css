@@ -1,32 +1,27 @@
-div.carousel {
-    background-color: lightgray;
-}
-img {
-    position: relative;
-    left: 25%;
-}
-div.welcome {
-    background-color: #f1f1f1;
-}
-
 h3 {
     position: relative;
-    left: 10px;
+    left: 10%;
     color: #1e2e6f;
     margin-top: 20px;
     margin-bottom: 0px;
 }
+div.rules,div.welcome{
+    max-width: 90%;
+}
 p {
     position: relative;
-    left: 15px;
+    left: 11%;
+    max-width: 90%;
     line-height: 2.2;
 }
 div.gruppen{
     position: relative;
-    left: 50px;
-    margin-bottom: 100px;
+    left: 12%;
+    margin-bottom: 5%;
+    max-width: 90%;
 }
 tab{
     position: relative;
-    left: 40px;
+    left: 2%;
+    line-height: 2.2;
 }

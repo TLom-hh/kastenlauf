@@ -1,1 +1,98 @@
-<p>registration works!</p>
+<div class="welcome">
+    <h3>Der Kastenlauf 2022</h3>
+    <p>Die Topspartart kommt zurück nach Salzhausen, besser als je zuvor. Sei dabei und erringe Ruhm, Ehre und einen Kater am nächsten Tag. Also suche dir deinen Trinkkumpanen und trainiert ordentlich für die Königsdisziplin des Trinkens.
+        Auch im Jahr 2022 wird der Kastenlauf wieder stattfinden. Am 07. Mai um 14:00 Uhr wird der Startschuss für den 4. Salzhäuser Kastenlauf gegeben. Meldet Euch jetzt an!
+    </p>
+</div>
+
+<h3>Anmeldung</h3>
+<br>
+
+<form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <div class="radioBox">
+        <label for="class">Klasse: </label>
+        <br>
+        <input class="disziplin" id="men" type="radio" formControlName="class" value="men">
+        <label class="disziplin" for="men">Männer</label>
+        <br>
+        <input class="disziplin" id="women" type="radio" formControlName="class" value="women">
+        <label class="disziplin" for="women">Frauen</label>
+        <br>
+        <input class="disziplin" id="mixed" type="radio" formControlName="class" value="mixed">
+        <label class="disziplin" for="mixed">Mixed</label>
+        <br>
+        <input class="disziplin" id="old" type="radio" formControlName="class" value="old">
+        <label class="disziplin" for="old">Junggebliebene</label>
+    </div>
+
+    <br><br>
+    <label for="teamname">Teamname: </label>
+    <input id="teamname" type="text" formControlName="teamname" required> 
+    <!-- <div *ngIf="teamname.invalid && (teamname.dirty || teamname.touched)" class="alert alter-danger">
+        <div *ngIf="teamname.hasError('required')">
+            Teamname ist notwendig.
+        </div>
+        <div *ngIf="teamname.hasError('minlength')">
+            Teamname muss eine Mindestlönge von 4 haben.
+        </div> 
+    </div>-->
+    <br><br>
+    <label for="location">Wo kommt ihr her? </label>
+    <input id="location" type="text" formControlName="location">
+    <br><br>
+    <div formGroupName="first">
+        <p>1. Starter</p>
+        <label for="first-name">Name: </label>
+        <input id="first-name" type="text" formControlName="name">
+        <br><br>
+        <label for="telephone-number">Handy-Nummer: </label>
+        <input id="telephone-number" type="text" formControlName="telephoneNumber">
+    </div>
+    <br>
+    <div formGroupName="second">
+        <p>2. Starter</p>
+        <label for="first-name">Name: </label>
+        <input id="first-name" type="text" formControlName="name">
+        <br><br>
+        <label for="telephone-number">Handy-Nummer: </label>
+        <input id="telephone-number" type="text" formControlName="telephoneNumber">
+    </div>
+    <br>
+    <div formGroupName="third">
+        <p>3. Starter</p>
+        <label for="first-name">Name: </label>
+        <input id="first-name" type="text" formControlName="name">
+        <br><br>
+        <label for="telephone-number">Handy-Nummer: </label>
+        <input id="telephone-number" type="text" formControlName="telephoneNumber">
+    </div>
+    <br>
+    <div formGroupName="fourth">
+        <p>4. Starter</p>
+        <label for="first-name">Name: </label>
+        <input id="first-name" type="text" formControlName="name">
+        <br><br>
+        <label for="telephone-number">Handy-Nummer: </label>
+        <input id="telephone-number" type="text" formControlName="telephoneNumber">
+    </div>
+    <br>
+    <div class="radioBox">
+        <label for="beer">Bier: </label>
+        <br>
+        <input class="beer" id="krom" type="radio" formControlName="beer" value="krom">
+        <label class="beer" for="krom">Krombacher (24x0,33l)</label>
+        <br>
+        <input class="beer" id="becks" type="radio" formControlName="beer" value="becks">
+        <label class="beer" for="becks">Becks (24x0,33l)</label>
+        <br>
+        <input class="beer" id="astra" type="radio" formControlName="beer" value="astra">
+        <label class="beer" for="astra">Astra (27x0,33l)</label>
+        <br>
+        <input class="beer" id="radler" type="radio" formControlName="beer" value="radler">
+        <label class="beer" for="radler">Krombacher Radler (24x0,33l)</label>
+    </div>
+</form>
+<br>
+<p>Form Status: {{ teamForm.value | json }}</p>
+
+<button class="end" type="submit" [disabled]="!teamForm.valid">Anmelden</button>

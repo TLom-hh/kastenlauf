@@ -1,0 +1,47 @@
+h3 {
+    position: relative;
+    left: 10%;
+    color: #1e2e6f;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+p {
+    position: relative;
+    left: 11%;
+    max-width: 90%;
+    line-height: 2.2;
+}
+div.welcome{
+    position: relative;
+    max-width: 90%;
+}
+label{
+    position: relative;
+    left: 15%;
+    line-height: 2.2;
+}
+input {
+    position: relative;
+    left: 20%;
+    line-height: 1.6;
+}
+button{
+    position: relative;
+    left: 20%;
+    line-height: 1.7;
+}
+button.end{
+    position: relative;
+    left: 20%;
+    line-height: 1.7;
+    margin-top: 30px;
+}
+label.disziplin, label.beer{
+    position: absolute;
+    left: 21%;
+    margin-left: 15px;
+}
+input.disziplin, input.beer{
+    position: relative;
+    left: 20%;
+}
