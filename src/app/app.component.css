@@ -5,8 +5,16 @@ h1 {
     top: 10px;
 }
 div.navigation {
+    display: inline-block;
     position: relative;
     left: 5%;
+    
+}
+div.login{
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    margin-top: 10px;
 }
 nav {
     background-color: #1e2c6f;
@@ -31,17 +39,4 @@ nav a:hover {
 }
 nav a.active {
     background-color: black;
-}
-div.carousel {
-    background-color: lightgray;
-    position: relative;
-    max-width: 100%;
-}
-img {
-    position: relative;
-    max-height: 600px;
-    min-width: 100%;
-    max-width: 100%;
-    object-fit: cover;
-    object-position: center;
 }

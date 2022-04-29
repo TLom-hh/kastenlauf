@@ -19,7 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-18683410.okta.com/oauth2/default',
-  clientId: '0oa4v33jdfJc8oBpS5d7',
+  clientId: '0oa4um5bmeYdwUPPZ5d7',
   redirectUri: window.location.origin + '/login/callback'
 });
 

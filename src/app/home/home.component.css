@@ -25,3 +25,16 @@ tab{
     left: 2%;
     line-height: 2.2;
 }
+div.carousel {
+    background-color: lightgray;
+    position: relative;
+    max-width: 100%;
+}
+img {
+    position: relative;
+    max-height: 600px;
+    min-width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
