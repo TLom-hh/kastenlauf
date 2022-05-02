@@ -1,14 +1,30 @@
-<div class="welcome">
+<!-- <div class="welcome">
     <h3>Der Kastenlauf 2022</h3>
     <p>Die Topspartart kommt zurück nach Salzhausen, besser als je zuvor. Sei dabei und erringe Ruhm, Ehre und einen Kater am nächsten Tag. Also suche dir deinen Trinkkumpanen und trainiert ordentlich für die Königsdisziplin des Trinkens.
         Auch im Jahr 2022 wird der Kastenlauf wieder stattfinden. Am 07. Mai um 14:00 Uhr wird der Startschuss für den 4. Salzhäuser Kastenlauf gegeben. Meldet Euch jetzt an!
     </p>
-</div>
-
-<h3>Anmeldung</h3>
+</div> -->
+<h3>Team anmelden</h3>
 <br>
 
-<form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+
+<input id="newTeamName" type="text" [formControl]="newTeamName" (input)="searchTeam()">
+
+<br><br>
+
+<ul class="teamnames">
+    <li *ngFor="let team of teamnames">
+        <button class="name" (click)="getTeamByName(team.teamname)">{{team.teamname}}</button>
+    </li>
+</ul>
+
+<br>
+
+<form [formGroup]="teamForm">
+    
+    <label for="teamname">Teamname: </label>
+    <input id="teamname" type="text" formControlName="teamname" required> 
+    <br>
     <div class="radioBox">
         <label for="class">Klasse: </label>
         <br>
@@ -24,75 +40,55 @@
         <input class="disziplin" id="old" type="radio" formControlName="class" value="old">
         <label class="disziplin" for="old">Junggebliebene</label>
     </div>
-
-    <br><br>
-    <label for="teamname">Teamname: </label>
-    <input id="teamname" type="text" formControlName="teamname" required> 
-    <!-- <div *ngIf="teamname.invalid && (teamname.dirty || teamname.touched)" class="alert alter-danger">
-        <div *ngIf="teamname.hasError('required')">
-            Teamname ist notwendig.
-        </div>
-        <div *ngIf="teamname.hasError('minlength')">
-            Teamname muss eine Mindestlönge von 4 haben.
-        </div> 
-    </div>-->
-    <br><br>
-    <label for="location">Wo kommt ihr her? </label>
-    <input id="location" type="text" formControlName="location">
-    <br><br>
-    <div formGroupName="first">
+    <br>
         <p>1. Starter</p>
         <label for="first-name">Name: </label>
-        <input id="first-name" type="text" formControlName="name">
+        <input id="first-name" type="text" formControlName="first">
         <br><br>
         <label for="telephone-number">Handy-Nummer: </label>
-        <input id="telephone-number" type="text" formControlName="telephoneNumber">
-    </div>
+        <input id="telephone-number" type="text" formControlName="fnumber">
     <br>
-    <div formGroupName="second">
         <p>2. Starter</p>
         <label for="first-name">Name: </label>
-        <input id="first-name" type="text" formControlName="name">
+        <input id="first-name" type="text" formControlName="second">
         <br><br>
         <label for="telephone-number">Handy-Nummer: </label>
-        <input id="telephone-number" type="text" formControlName="telephoneNumber">
-    </div>
+        <input id="telephone-number" type="text" formControlName="snumber">
     <br>
-    <div formGroupName="third">
         <p>3. Starter</p>
         <label for="first-name">Name: </label>
-        <input id="first-name" type="text" formControlName="name">
+        <input id="first-name" type="text" formControlName="third">
         <br><br>
         <label for="telephone-number">Handy-Nummer: </label>
-        <input id="telephone-number" type="text" formControlName="telephoneNumber">
-    </div>
+        <input id="telephone-number" type="text" formControlName="tnumber">
     <br>
-    <div formGroupName="fourth">
         <p>4. Starter</p>
         <label for="first-name">Name: </label>
-        <input id="first-name" type="text" formControlName="name">
+        <input id="first-name" type="text" formControlName="fourth">
         <br><br>
         <label for="telephone-number">Handy-Nummer: </label>
-        <input id="telephone-number" type="text" formControlName="telephoneNumber">
-    </div>
+        <input id="telephone-number" type="text" formControlName="vnumber">
     <br>
     <div class="radioBox">
         <label for="beer">Bier: </label>
         <br>
-        <input class="beer" id="krom" type="radio" formControlName="beer" value="krom">
+        <input class="beer" id="krom" type="radio" formControlName="beer" value="Krombacher (24x0,33l)">
         <label class="beer" for="krom">Krombacher (24x0,33l)</label>
         <br>
-        <input class="beer" id="becks" type="radio" formControlName="beer" value="becks">
+        <input class="beer" id="becks" type="radio" formControlName="beer" value="Becks (24x0,33l)">
         <label class="beer" for="becks">Becks (24x0,33l)</label>
         <br>
-        <input class="beer" id="astra" type="radio" formControlName="beer" value="astra">
+        <input class="beer" id="astra" type="radio" formControlName="beer" value="Astra (27x0,33l)">
         <label class="beer" for="astra">Astra (27x0,33l)</label>
         <br>
-        <input class="beer" id="radler" type="radio" formControlName="beer" value="radler">
+        <input class="beer" id="radler" type="radio" formControlName="beer" value="Krombacher Radler (24x0,33l)">
         <label class="beer" for="radler">Krombacher Radler (24x0,33l)</label>
     </div>
 </form>
 <br>
-<p>Form Status: {{ teamForm.value | json }}</p>
 
-<button class="end" type="submit" [disabled]="!teamForm.valid">Anmelden</button>
+<button class="end" (click)="onSubmit()">Anmelden</button>
+
+<p>{{teamForm.value | json}}</p>
+
+<p>{{currentTeam | json}}</p>

@@ -1,43 +1,78 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { OktaAuthStateService } from '@okta/okta-angular';
-import { environment } from 'src/environments/environment';
-import { AuthState } from '@okta/okta-auth-js';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
+export interface Teams {
+  team_id: number,
+  class: string,
+  teamname: string,
+  location: string,
+  beer: string,
+  first: string, 
+  fnumber: string,
+  second: string, 
+  snumber: string,
+  third: string, 
+  tnumber: string,
+  fourth: string, 
+  vnumber: string
+}
+
+export interface Teamnames {
+  name: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ServerService {
 
-  constructor(private http: HttpClient/*, public oktaAuth: OktaAuthStateService*/) { }
+  constructor(private http: HttpClient) { }
 
-  private async request(method: string, url: string, data?: any){
-    //const token = await this.oktaAuth.getAccessToken();
+  // getAllCats(): Observable<Teamname[]>{
+  //   return this.http.get<Cat[]>('http://localhost:8080/api/cats/')
+  // }
 
-    const result = this.http.request(method, url, {
-      body: data,
-      responseType: 'json',
-      observe: 'body',
-    });
-    return new Promise((resolve, reject) => {
-      result.subscribe(resolve, reject);
-    });
+  // getCat(name: string): Observable<Cat>{
+  //   return this.http.get<Cat>('http://localhost:8080/api/cats/' + name)
+  // }
+
+  // insertCat(cat: Cat): Observable<Cat>{
+  //   return this.http.post<Cat>('http://localhast:8080/api/cats/', cat)
+  // }
+
+  // updateCat(cat: Cat): Observable<void>{
+  //   return this.http.put<void>('localhost:8080/api/cats/' + cat.name, cat)
+  // }
+
+  // deleteCat(name: string) {
+  //   return this.http.delete('localhost:8080/api/cats/' + name)
+  // }
+
+  getTeamnames(): Observable<Teamnames>{
+    return this.http.get<Teamnames>('http://localhost:8080/api/teamnames');
   }
 
-  // getTeams() { 
-  //   return this.request('GET', `${environment.serverUrl}/team`);
-  // }
+  getTeams(): Observable<Teams>{
+    return this.http.get<Teams>('http://localhost:8080/api/teams');
+  }
 
-  // createTeam(team: {}) {
-  //   return this.request('POST', `${environment.serverUrl}/team`, team);
-  // }
+  getTeamByID(id: number): Observable<Teams[]>{
+    return this.http.get<Teams[]>('http://localhost:8080/api/teams/id/' + id);
+  }
 
-  // updateTeam(team: {}) {
-  //   return this.request('PUT', `${environment.serverUrl}/team/${team.team_id}`, team);
-  // }
+  getTeamByName(name: string): Observable<Teams[]>{
+    return this.http.get<Teams[]>('http://localhost:8080/api/teams/name/' + name);
+  }
 
-  // deleteTeam(team: {}) { 
-  //   return this.request('DELETE', `${environment.serverUrl}/team/${team.team_id}` );
-  // }
+  searchTeamByName(name: string): Observable<Teamnames[]>{
+    return this.http.get<Teamnames[]>('http://localhost:8080/api/teams/name/search/' + name);
+  }
+
+  registerTeam(team: Teams): Observable<Teams>{
+    return this.http.put<Teams>('http://localhost:8080/api/teams/update/', team);
+  }
 
 }

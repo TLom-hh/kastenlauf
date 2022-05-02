@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { ServerService, Teams, Teamnames } from '../server.service';
 
 @Component({
   selector: 'app-registration',
@@ -8,47 +9,90 @@ import { Validators, FormBuilder, FormArray } from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, public server: ServerService) { }
+
+  teamnames: any | undefined;
+
+  newTeamName = new FormControl('');  
 
   teamForm = this.fb.group({
-    class: ['', Validators.required],
-    teamname: ['', [Validators.required, Validators.minLength(4)]],
+    team_id: 0,
+    class: [''],
+    teamname: [''],
     location: [''],
-    beer: ['', Validators.required],
-    first: this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-z ]*')]],
-      telephoneNumber: ['', Validators.required],
-    }),
-    second: this.fb.group({
-      name: ['', Validators.required],
-      telephoneNumber: ['', Validators.required],
-    }),
-    third: this.fb.group({
-      name: [''],
-      telephoneNumber: [''],
-    }),
-    fourth: this.fb.group({
-      name: [''],
-      telephoneNumber: [''],
-    }),
+    beer: [''],
+    first: [''],
+    fnumber: [''],
+    second: [''],
+    snumber: [''],
+    third: [''],
+    tnumber: [''],
+    fourth: [''],
+    vnumber: [''],
   });
 
+  currentTeam: Teams = {
+    team_id: 0,
+    class: '',
+    teamname: '',
+    location: '',
+    beer: '',
+    first: '',
+    fnumber: '',
+    second: '',
+    snumber: '',
+    third: '',
+    tnumber: '',
+    fourth: '',
+    vnumber: '',
+  };
+
+  clear(){
+    this.teamForm.controls['class'].setValue('');
+    this.teamForm.controls['teamname'].setValue('');
+    this.teamForm.controls['beer'].setValue('');
+    this.teamForm.controls['first'].setValue('');
+    this.teamForm.controls['fnumber'].setValue('');
+    this.teamForm.controls['second'].setValue('');
+    this.teamForm.controls['snumber'].setValue('');
+    this.teamForm.controls['third'].setValue('');
+    this.teamForm.controls['tnumber'].setValue('');
+    this.teamForm.controls['fourth'].setValue('');
+    this.teamForm.controls['vnumber'].setValue('');
+    this.teamForm.controls['team_id'].setValue(0);
+    this.currentTeam = this.teamForm.value;
+  }
+
   onSubmit(){
-    //TODO: Use EventEmitter with form value
-    console.warn(this.teamForm.value);
+    this.currentTeam = this.teamForm.value;
+    this.server.registerTeam(this.currentTeam).subscribe();
+    this.clear();
   }
 
-  get members(){
-    return this.teamForm.get('members') as FormArray;
+  getTeamByName(name: string){
+    this.server.getTeamByName(name).subscribe((response: Teams[]) => {
+      this.teamForm.controls['class'].setValue(response[0].class);
+      this.teamForm.controls['teamname'].setValue(response[0].teamname);
+      this.teamForm.controls['beer'].setValue(response[0].beer);
+      this.teamForm.controls['first'].setValue(response[0].first);
+      this.teamForm.controls['fnumber'].setValue(response[0].fnumber);
+      this.teamForm.controls['second'].setValue(response[0].second);
+      this.teamForm.controls['snumber'].setValue(response[0].snumber);
+      this.teamForm.controls['third'].setValue(response[0].third);
+      this.teamForm.controls['tnumber'].setValue(response[0].tnumber);
+      this.teamForm.controls['fourth'].setValue(response[0].fourth);
+      this.teamForm.controls['vnumber'].setValue(response[0].vnumber);
+      this.teamForm.controls['team_id'].setValue(response[0].team_id);
+    })
+    this.newTeamName.setValue('');
+    this.searchTeam();
   }
 
-  addMember(){
-    this.members.push(this.fb.control(''));
+  searchTeam(){
+    this.server.searchTeamByName(this.newTeamName.value).subscribe((response: Teamnames[]) => {
+      this.teamnames = response;
+    })
   }
-
-  get teamname() { return this.teamForm.get('teamName')}
-
-  get f() { return this.teamForm.controls }
 
   ngOnInit(): void {
   }

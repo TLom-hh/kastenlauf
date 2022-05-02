@@ -2,18 +2,8 @@
   <div class="navigation">
     <nav>
       <a routerLink="/home">Kastenlauf 2022</a>
-      <a routerLink="/registration">Team bearbeiten</a>
+      <a routerLink="/registration">Team anmelden</a>
     </nav>
-  </div>
-  <div class="login">
-    <ng-container *ngIf="(isAuthenticated$ | async) === false; else signout">
-      <button (click)="signIn()"> Sign in </button>
-    </ng-container>
-    
-    <ng-template #signout>
-      <button (click)="signOut()">Sign out</button>
-    </ng-template>
-    <app-profile></app-profile>
   </div>
 </div>
 

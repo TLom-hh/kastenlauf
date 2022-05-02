@@ -8,14 +8,15 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
-import { ProfileComponent } from './profile/profile.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-18683410.okta.com/oauth2/default',
@@ -40,6 +41,7 @@ const oktaAuth = new OktaAuth({
     TabsModule.forRoot(),
     ReactiveFormsModule,
     OktaAuthModule,
+    HttpClientModule,
   ],
   providers: [{provide: OKTA_CONFIG, useValue: {oktaAuth}}],
   bootstrap: [AppComponent]
