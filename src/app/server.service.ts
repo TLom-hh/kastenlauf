@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Entry } from './timer/timer.component';
 
 export interface Teams {
   team_id: number,
@@ -73,6 +74,14 @@ export class ServerService {
 
   registerTeam(team: Teams): Observable<Teams>{
     return this.http.put<Teams>('http://localhost:8080/api/teams/update/', team);
+  }
+
+  startTime(time: string){
+    return this.http.get('http://localhost:8080/api/time/start/' + time);
+  }
+
+  getTime(): Observable<any> {
+    return this.http.get<any>('http://localhost:8080/api/time');
   }
 
 }
