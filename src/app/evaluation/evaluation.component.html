@@ -1,1 +1,11 @@
-<p>evaluation works!</p>
+<h3>Auswertung</h3>
+
+<button (click)="eval()">Werte aus!</button>
+
+<ul class="teamnames">
+    <li *ngFor="let team of teamStandings">
+        <span class="class">{{team.class}} </span>
+        <span class="name">{{team.teamname}} </span>
+        <span class="time">{{team.totalTime}}</span>
+    </li>
+</ul>

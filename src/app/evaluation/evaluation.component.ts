@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService, Standings } from '../server.service';
 
 @Component({
   selector: 'app-evaluation',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EvaluationComponent implements OnInit {
 
-  constructor() { }
+  constructor(public server: ServerService) { }
+  
+  teamStandings: Standings[] | undefined;
+
+  eval() {
+    this.server.getStandings().subscribe((response) =>{
+      this.teamStandings = response;
+    })
+    
+  } 
 
   ngOnInit(): void {
   }

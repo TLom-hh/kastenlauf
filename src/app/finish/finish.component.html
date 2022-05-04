@@ -15,7 +15,7 @@
 
 <p>Team: {{currentTeam.teamname}}</p>
 <p class="time">Zeit: {{timespan.hours | number: '2.0-0'}}:{{timespan.minutes | number: '2.0-0'}}:{{timespan.seconds | number: '2.0-0'}}</p>
-<p>Strafe: {{penalty}} Minuten</p>
+<p>Zeit inkl Strafe: {{penaltyTime.hours | number: '2.0-0'}}:{{penaltyTime.minutes | number: '2.0-0'}}:{{penaltyTime.seconds | number: '2.0-0'}}</p>
 <br>
     <p>Flaschen & Kronkorken</p>
     <label for="bottles">Fehlende Flaschen: </label>
@@ -26,7 +26,7 @@
 <br>
 <br>
 
-<button (click)="setPenalty()">Fertig</button>
+<button (click)="setTimes()">Fertig</button>
 <!-- <p>{{teamForm.value | json}}</p>
 <p>{{currentTeam | json}}</p>
 <p>{{penalty}}</p>

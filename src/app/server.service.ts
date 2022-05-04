@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { Entry } from './timer/timer.component';
 
 export interface Teams {
   team_id: number,
@@ -25,6 +23,12 @@ export interface Teamnames {
   name: string;
 }
 
+export interface Standings {
+  teamname: string,
+  totalTime: number,
+  class: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,26 +36,6 @@ export interface Teamnames {
 export class ServerService {
 
   constructor(private http: HttpClient) { }
-
-  // getAllCats(): Observable<Teamname[]>{
-  //   return this.http.get<Cat[]>('http://localhost:8080/api/cats/')
-  // }
-
-  // getCat(name: string): Observable<Cat>{
-  //   return this.http.get<Cat>('http://localhost:8080/api/cats/' + name)
-  // }
-
-  // insertCat(cat: Cat): Observable<Cat>{
-  //   return this.http.post<Cat>('http://localhast:8080/api/cats/', cat)
-  // }
-
-  // updateCat(cat: Cat): Observable<void>{
-  //   return this.http.put<void>('localhost:8080/api/cats/' + cat.name, cat)
-  // }
-
-  // deleteCat(name: string) {
-  //   return this.http.delete('localhost:8080/api/cats/' + name)
-  // }
 
   getTeamnames(): Observable<Teamnames>{
     return this.http.get<Teamnames>('http://localhost:8080/api/teamnames');
@@ -91,6 +75,14 @@ export class ServerService {
 
   setPenalty(teamname: string, penalty: number){
     return this.http.get('http://localhost:8080/api/teams/setpenalty/' + teamname + '/' + penalty);
+  }
+
+  setTotal(teamname: string, totalTime: string) {
+    return this.http.get('http://localhost:8080/api/teams/settotal/' + teamname +'/' + totalTime);
+  }
+
+  getStandings(): Observable<Standings[]> {
+    return this.http.get<Standings[]>('http://localhost:8080/api/teams/standings');
   }
   
 }

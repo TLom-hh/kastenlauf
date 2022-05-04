@@ -21,7 +21,11 @@ export class FinishComponent implements OnInit {
     seconds: 0
   }
 
-  penalty: number = 0;
+  penaltyTime: TimeSpan = {
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  };
 
   teamnames: any | undefined;
 
@@ -136,12 +140,42 @@ export class FinishComponent implements OnInit {
     this.bottlecaps.setValue(0);
   }
 
-  setPenalty() {
-    this.server.setPenalty(this.currentTeam.teamname, Number(this.penalty)).subscribe();
+  setTimes() {
+    let totalTime = this.penaltyTime.hours + ':' + this.penaltyTime.minutes + ':' + this.penaltyTime.seconds;
+    this.server.setTotal(this.currentTeam.teamname, totalTime).subscribe();
   }
 
   refreshPenalty() {
-    this.penalty = this.bottles.value * 15 + Number(this.bottlecaps.value) * 10;
+    let totalPenalty = this.bottles.value * 900 + this.bottlecaps.value * 600;
+    this.server.setPenalty(this.currentTeam.teamname, totalPenalty).subscribe();
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    if (totalPenalty >= 3600) {
+      hours = Math.floor(totalPenalty / 3600);
+      totalPenalty -= 3600 * hours;
+    }
+  
+    if (totalPenalty >= 60) {
+      minutes = Math.floor(totalPenalty / 60);
+      totalPenalty -= 60 * minutes;
+    }
+  
+    seconds = totalPenalty;
+
+    if ((this.timespan.seconds + seconds) > 59) {
+      minutes++;
+      seconds -= 60;
+    }
+
+    if ((this.timespan.minutes + minutes) > 59) {
+      hours++;
+      minutes -= 60;
+    }
+
+    this.penaltyTime.hours = this.timespan.hours + hours;
+    this.penaltyTime.minutes = this.timespan.minutes + minutes;
+    this.penaltyTime.seconds = this.timespan.seconds + seconds;
   }
 
   ngOnInit(): void {
