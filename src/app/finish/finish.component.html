@@ -1,0 +1,33 @@
+<h3>Ziel</h3>
+
+<!-- TODO: Replace search Function with QR Code and team_id query-->
+
+<label for="newTeamName">Team suchen:</label>
+<input id="newTeamName" type="text" [formControl]="newTeamName" (input)="searchTeam()">
+
+<br><br>
+
+<ul class="teamnames">
+    <li *ngFor="let team of teamnames">
+        <button class="name" (click)="setTimeByName(team.teamname)">{{team.teamname}}</button>
+    </li>
+</ul>
+
+<p>Team: {{currentTeam.teamname}}</p>
+<p class="time">Zeit: {{timespan.hours | number: '2.0-0'}}:{{timespan.minutes | number: '2.0-0'}}:{{timespan.seconds | number: '2.0-0'}}</p>
+<p>Strafe: {{penalty}} Minuten</p>
+<br>
+    <p>Flaschen & Kronkorken</p>
+    <label for="bottles">Fehlende Flaschen: </label>
+    <input id="bottles" type="number" [formControl]="bottles" (input)="refreshPenalty()">
+    <br><br>
+    <label for="bottlecaps">Fehlende Kronkorken: </label>
+    <input id="bottlecaps" type="number" [formControl]="bottlecaps" (input)="refreshPenalty()">
+<br>
+<br>
+
+<button (click)="setPenalty()">Fertig</button>
+<!-- <p>{{teamForm.value | json}}</p>
+<p>{{currentTeam | json}}</p>
+<p>{{penalty}}</p>
+<p>{{bottles.value}}</p> -->

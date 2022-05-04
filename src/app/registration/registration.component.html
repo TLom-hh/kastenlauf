@@ -7,7 +7,7 @@
 <h3>Team anmelden</h3>
 <br>
 
-
+<label for="newTeamName">Team suchen:</label>
 <input id="newTeamName" type="text" [formControl]="newTeamName" (input)="searchTeam()">
 
 <br><br>
@@ -84,11 +84,23 @@
         <input class="beer" id="radler" type="radio" formControlName="beer" value="Krombacher Radler (24x0,33l)">
         <label class="beer" for="radler">Krombacher Radler (24x0,33l)</label>
     </div>
+    <br>
+    <div class="radioBox">
+        <label for="member">Ein Starter ist Mitglied im Verein: </label>
+        <br>
+        <input class="member" id="yes" type="radio" formControlName="member" value="yes">
+        <label class="member" for="yes">Ja</label>
+        <br>
+        <input class="member" id="no" type="radio" formControlName="member" value="no">
+        <label class="member" for="no">Nein</label>
+    </div>
 </form>
 <br>
 
 <button class="end" (click)="onSubmit()">Anmelden</button>
+<p></p>
+<button class="clear" (click)="clear()">Clear</button>
 
-<p>{{teamForm.value | json}}</p>
+<!-- <p>{{teamForm.value | json}}</p>
 
-<p>{{currentTeam | json}}</p>
+<p>{{currentTeam | json}}</p> -->

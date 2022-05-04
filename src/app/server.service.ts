@@ -17,7 +17,8 @@ export interface Teams {
   third: string, 
   tnumber: string,
   fourth: string, 
-  vnumber: string
+  vnumber: string,
+  member: string
 }
 
 export interface Teamnames {
@@ -84,4 +85,12 @@ export class ServerService {
     return this.http.get<any>('http://localhost:8080/api/time');
   }
 
+  setTime(time: string, teamname: string) {
+    return this.http.get('http://localhost:8080/api/teams/settime/' + teamname + '/' + time);
+  }
+
+  setPenalty(teamname: string, penalty: number){
+    return this.http.get('http://localhost:8080/api/teams/setpenalty/' + teamname + '/' + penalty);
+  }
+  
 }

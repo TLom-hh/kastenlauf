@@ -19,6 +19,8 @@ import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
 import { StartTimeComponent } from './start-time/start-time.component';
 import { TimerComponent } from './timer/timer.component';
+import { FinishComponent } from './finish/finish.component';
+import { EvaluationComponent } from './evaluation/evaluation.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-18683410.okta.com/oauth2/default',
@@ -34,7 +36,9 @@ const oktaAuth = new OktaAuth({
     FooterComponent,
     ProfileComponent,
     StartTimeComponent,
-    TimerComponent
+    TimerComponent,
+    FinishComponent,
+    EvaluationComponent
   ],
   imports: [
     BrowserModule,

@@ -11,10 +11,6 @@ p {
     max-width: 90%;
     line-height: 2.2;
 }
-div.welcome{
-    position: relative;
-    max-width: 90%;
-}
 label{
     position: relative;
     left: 15%;
@@ -35,13 +31,4 @@ button.end{
     left: 20%;
     line-height: 1.7;
     margin-top: 30px;
-}
-label.disziplin, label.beer, label.member{
-    position: absolute;
-    left: 21%;
-    margin-left: 15px;
-}
-input.disziplin, input.beer, input.member{
-    position: relative;
-    left: 20%;
 }

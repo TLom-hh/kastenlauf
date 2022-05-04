@@ -6,6 +6,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { OktaCallbackComponent } from '@okta/okta-angular';
 import { StartTimeComponent } from './start-time/start-time.component';
 import { TimerComponent } from './timer/timer.component';
+import { FinishComponent } from './finish/finish.component';
+import { EvaluationComponent } from './evaluation/evaluation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'login/callback', component: OktaCallbackComponent},
   { path: 'starttime', component: StartTimeComponent},
-  { path: 'timer', component: TimerComponent}
+  { path: 'timer', component: TimerComponent},
+  { path: 'finish', component: FinishComponent},
+  { path: 'evaluation', component: EvaluationComponent},
 ];
 
 @NgModule({

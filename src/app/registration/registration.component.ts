@@ -11,6 +11,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public server: ServerService) { }
 
+
+
   teamnames: any | undefined;
 
   newTeamName = new FormControl('');  
@@ -29,6 +31,7 @@ export class RegistrationComponent implements OnInit {
     tnumber: [''],
     fourth: [''],
     vnumber: [''],
+    member: ['']
   });
 
   currentTeam: Teams = {
@@ -45,6 +48,7 @@ export class RegistrationComponent implements OnInit {
     tnumber: '',
     fourth: '',
     vnumber: '',
+    member: '',
   };
 
   clear(){
@@ -60,6 +64,7 @@ export class RegistrationComponent implements OnInit {
     this.teamForm.controls['fourth'].setValue('');
     this.teamForm.controls['vnumber'].setValue('');
     this.teamForm.controls['team_id'].setValue(0);
+    this.teamForm.controls['member'].setValue('');
     this.currentTeam = this.teamForm.value;
   }
 
@@ -83,6 +88,7 @@ export class RegistrationComponent implements OnInit {
       this.teamForm.controls['fourth'].setValue(response[0].fourth);
       this.teamForm.controls['vnumber'].setValue(response[0].vnumber);
       this.teamForm.controls['team_id'].setValue(response[0].team_id);
+      this.teamForm.controls['member'].setValue(response[0].member);
     })
     this.newTeamName.setValue('');
     this.searchTeam();
