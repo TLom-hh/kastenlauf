@@ -7,6 +7,10 @@
 
 <br><br>
 
+<zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+
+<br><br>
+
 <ul class="teamnames">
     <li *ngFor="let team of teamnames">
         <button class="name" (click)="setTimeByName(team.teamname)">{{team.teamname}}</button>
@@ -27,6 +31,9 @@
 <br>
 
 <button (click)="setTimes()">Fertig</button>
+<button (click)="setDNF()">DNF</button>
+<button (click)="setDSQ()">DSQ</button>
+
 <!-- <p>{{teamForm.value | json}}</p>
 <p>{{currentTeam | json}}</p>
 <p>{{penalty}}</p>

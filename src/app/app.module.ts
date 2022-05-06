@@ -21,6 +21,8 @@ import { StartTimeComponent } from './start-time/start-time.component';
 import { TimerComponent } from './timer/timer.component';
 import { FinishComponent } from './finish/finish.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { TasksComponent } from './tasks/tasks.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-18683410.okta.com/oauth2/default',
@@ -38,7 +40,8 @@ const oktaAuth = new OktaAuth({
     StartTimeComponent,
     TimerComponent,
     FinishComponent,
-    EvaluationComponent
+    EvaluationComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ const oktaAuth = new OktaAuth({
     ReactiveFormsModule,
     OktaAuthModule,
     HttpClientModule,
+    ZXingScannerModule,
   ],
   providers: [{provide: OKTA_CONFIG, useValue: {oktaAuth}}],
   bootstrap: [AppComponent]

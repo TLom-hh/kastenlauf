@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface Teams {
   team_id: number,
@@ -23,9 +23,15 @@ export interface Teamnames {
   name: string;
 }
 
+export interface Tasktime {
+  points: number;
+}
+
 export interface Standings {
   teamname: string,
-  totalTime: number,
+  hours: number,
+  minutes: number,
+  seconds: number,
   class: string
 }
 
@@ -38,51 +44,60 @@ export class ServerService {
   constructor(private http: HttpClient) { }
 
   getTeamnames(): Observable<Teamnames>{
-    return this.http.get<Teamnames>('http://localhost:8080/api/teamnames');
+    return this.http.get<Teamnames>('https://192.168.242.213:8080/api/teamnames');
   }
 
   getTeams(): Observable<Teams>{
-    return this.http.get<Teams>('http://localhost:8080/api/teams');
+    return this.http.get<Teams>('https://192.168.242.213:8080/api/teams');
   }
 
   getTeamByID(id: number): Observable<Teams[]>{
-    return this.http.get<Teams[]>('http://localhost:8080/api/teams/id/' + id);
+    return this.http.get<Teams[]>('https://192.168.242.213:8080/api/teams/id/' + id);
   }
 
   getTeamByName(name: string): Observable<Teams[]>{
-    return this.http.get<Teams[]>('http://localhost:8080/api/teams/name/' + name);
+    return this.http.get<Teams[]>('https://192.168.242.213:8080/api/teams/name/' + name);
   }
 
   searchTeamByName(name: string): Observable<Teamnames[]>{
-    return this.http.get<Teamnames[]>('http://localhost:8080/api/teams/name/search/' + name);
+    return this.http.get<Teamnames[]>('https://192.168.242.213:8080/api/teams/name/search/' + name);
+  }
+
+  searchTeamByNameFinish(name: string): Observable<Teamnames[]>{
+    return this.http.get<Teamnames[]>('https://192.168.242.213:8080/api/teams/name/finish/search/' + name);
   }
 
   registerTeam(team: Teams): Observable<Teams>{
-    return this.http.put<Teams>('http://localhost:8080/api/teams/update/', team);
+    return this.http.put<Teams>('https://192.168.242.213:8080/api/teams/update/', team);
   }
 
   startTime(time: string){
-    return this.http.get('http://localhost:8080/api/time/start/' + time);
+    return this.http.get('https://192.168.242.213:8080/api/time/start/' + time);
   }
 
   getTime(): Observable<any> {
-    return this.http.get<any>('http://localhost:8080/api/time');
+    return this.http.get<any>('https://192.168.242.213:8080/api/time');
   }
 
   setTime(time: string, teamname: string) {
-    return this.http.get('http://localhost:8080/api/teams/settime/' + teamname + '/' + time);
+    return this.http.get('https://192.168.242.213:8080/api/teams/settime/' + teamname + '/' + time);
   }
 
   setPenalty(teamname: string, penalty: number){
-    return this.http.get('http://localhost:8080/api/teams/setpenalty/' + teamname + '/' + penalty);
+    return this.http.get('https://192.168.242.213:8080/api/teams/setpenalty/' + teamname + '/' + penalty);
   }
 
   setTotal(teamname: string, totalTime: string) {
-    return this.http.get('http://localhost:8080/api/teams/settotal/' + teamname +'/' + totalTime);
+    return this.http.get('https://192.168.242.213:8080/api/teams/settotal/' + teamname +'/' + totalTime);
   }
 
   getStandings(): Observable<Standings[]> {
-    return this.http.get<Standings[]>('http://localhost:8080/api/teams/standings');
+    return this.http.get<Standings[]>('https://192.168.242.213:8080/api/teams/standings');
   }
   
+  getTaskTime(name: string): Observable<Tasktime> {
+    return this.http.get<Tasktime>('https://192.168.242.213:8080/api/teams/tasktime/' + name);
+  }
+
 }
+ 

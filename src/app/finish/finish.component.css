@@ -32,3 +32,9 @@ button.end{
     line-height: 1.7;
     margin-top: 30px;
 }
+ul {
+    list-style-type: none;
+}
+button.name {
+    margin-bottom: 10px;
+}

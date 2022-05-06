@@ -1,0 +1,25 @@
+h3 {
+    position: relative;
+    left: 10%;
+    color: #1e2e6f;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+p {
+    position: relative;
+    left: 11%;
+    max-width: 90%;
+    line-height: 2.2;
+}
+button{
+    position: relative;
+    left: 10%;
+    line-height: 1.7;
+}
+ul {
+    list-style-type: none;
+}
+span.time{
+    position: relative;
+    left: 10%;
+}

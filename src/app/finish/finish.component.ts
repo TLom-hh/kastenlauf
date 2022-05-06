@@ -70,7 +70,7 @@ export class FinishComponent implements OnInit {
   });
 
   searchTeam(){
-    this.server.searchTeamByName(this.newTeamName.value).subscribe((response: Teamnames[]) => {
+    this.server.searchTeamByNameFinish(this.newTeamName.value).subscribe((response: Teamnames[]) => {
       this.teamnames = response;
     })
   }
@@ -138,11 +138,19 @@ export class FinishComponent implements OnInit {
     this.currentTeam = this.teamForm.value;
     this.bottles.setValue(0);
     this.bottlecaps.setValue(0);
+    this.timespan.hours = 0;
+    this.timespan.minutes = 0;
+    this.timespan.seconds = 0;
+    this.penaltyTime.minutes = 0;
+    this.penaltyTime.hours = 0;
+    this.penaltyTime.seconds = 0;
   }
 
   setTimes() {
+    this.refreshPenalty();
     let totalTime = this.penaltyTime.hours + ':' + this.penaltyTime.minutes + ':' + this.penaltyTime.seconds;
     this.server.setTotal(this.currentTeam.teamname, totalTime).subscribe();
+    this.clear();
   }
 
   refreshPenalty() {
@@ -176,6 +184,20 @@ export class FinishComponent implements OnInit {
     this.penaltyTime.hours = this.timespan.hours + hours;
     this.penaltyTime.minutes = this.timespan.minutes + minutes;
     this.penaltyTime.seconds = this.timespan.seconds + seconds;
+  }
+
+  setDNF() {
+    this.server.setTotal(this.currentTeam.teamname, 'DNF').subscribe();
+    this.clear();
+  }
+
+  setDSQ(){
+    this.server.setTotal(this.currentTeam.teamname, 'DSQ').subscribe();
+    this.clear();
+  }
+
+  onCodeResult(resultString: string){
+    this.setTimeByName(resultString);
   }
 
   ngOnInit(): void {
