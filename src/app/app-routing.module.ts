@@ -8,6 +8,7 @@ import { StartTimeComponent } from './start-time/start-time.component';
 import { TimerComponent } from './timer/timer.component';
 import { FinishComponent } from './finish/finish.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'timer', component: TimerComponent},
   { path: 'finish', component: FinishComponent},
   { path: 'evaluation', component: EvaluationComponent},
+  { path: 'penalty', component: TasksComponent}
 ];
 
 @NgModule({

@@ -87,8 +87,8 @@ export class ServerService {
     return this.http.get('https://192.168.242.213:8080/api/teams/setpenalty/' + teamname + '/' + penalty);
   }
 
-  setTotal(teamname: string, totalTime: string) {
-    return this.http.get('https://192.168.242.213:8080/api/teams/settotal/' + teamname +'/' + totalTime);
+  setTotal(teamname: string, hours: number, minutes: number, seconds: number) {
+    return this.http.get('https://192.168.242.213:8080/api/teams/settotal/' + teamname +'/' + hours + '/' + minutes + '/' + seconds);
   }
 
   getStandings(): Observable<Standings[]> {
@@ -97,6 +97,10 @@ export class ServerService {
   
   getTaskTime(name: string): Observable<Tasktime> {
     return this.http.get<Tasktime>('https://192.168.242.213:8080/api/teams/tasktime/' + name);
+  }
+
+  getTimeByName(name: string): Observable<Standings>{
+    return this.http.get<Standings>('https://192.168.242.213:8080/api/teams/time/' + name);
   }
 
 }

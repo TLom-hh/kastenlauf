@@ -33,24 +33,32 @@ export class EvaluationComponent implements OnInit {
             }
           
             seconds = taskTime;
+
+            if (minutes >= 60) {
+              let more = minutes - 59;
+              hours += more;
+              minutes -= more;
+            }
           }
           if (taskTime < 0) {
-            if (taskTime <= 3600) {
+            if (taskTime <= -3600) {
               hours = Math.floor(taskTime / 3600);
               taskTime += 3600 * hours;
             }
           
-            if (taskTime >= 60) {
+            if (taskTime <= -60) {
               minutes = Math.floor(taskTime / 60);
-              taskTime += 60 * minutes;
+              taskTime -= 60 * minutes;
             }
           
             seconds = taskTime;
+
+            
           }
 
         team.hours += hours;
         team.minutes += minutes;
-        team.seconds+= seconds;
+        team.seconds += seconds;
         });
       }
     })

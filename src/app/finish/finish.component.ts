@@ -148,8 +148,7 @@ export class FinishComponent implements OnInit {
 
   setTimes() {
     this.refreshPenalty();
-    let totalTime = this.penaltyTime.hours + ':' + this.penaltyTime.minutes + ':' + this.penaltyTime.seconds;
-    this.server.setTotal(this.currentTeam.teamname, totalTime).subscribe();
+    this.server.setTotal(this.currentTeam.teamname, this.penaltyTime.hours, this.penaltyTime.minutes, this.penaltyTime.seconds).subscribe();
     this.clear();
   }
 
@@ -187,12 +186,12 @@ export class FinishComponent implements OnInit {
   }
 
   setDNF() {
-    this.server.setTotal(this.currentTeam.teamname, 'DNF').subscribe();
+    this.server.setTotal(this.currentTeam.teamname, 98, 98, 98).subscribe();
     this.clear();
   }
 
   setDSQ(){
-    this.server.setTotal(this.currentTeam.teamname, 'DSQ').subscribe();
+    this.server.setTotal(this.currentTeam.teamname, 99, 99, 99).subscribe();
     this.clear();
   }
 
