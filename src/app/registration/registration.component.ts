@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 import { ServerService, Teams, Teamnames } from '../server.service';
 
 @Component({
@@ -9,13 +9,13 @@ import { ServerService, Teams, Teamnames } from '../server.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, public server: ServerService) { }
+  constructor(private fb: UntypedFormBuilder, public server: ServerService) { }
 
 
 
   teamnames: any | undefined;
 
-  newTeamName = new FormControl('');  
+  newTeamName = new UntypedFormControl('');  
 
   teamForm = this.fb.group({
     team_id: 0,

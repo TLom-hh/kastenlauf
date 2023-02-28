@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { ServerService, Teamnames, Teams } from '../server.service';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { TimeSpan } from '../timer/timer.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { TimeSpan } from '../timer/timer.component';
 export class TasksComponent implements OnInit {
 
  
-  constructor(private fb: FormBuilder, public server: ServerService) { }
+  constructor(private fb: UntypedFormBuilder, public server: ServerService) { }
 
   time: Date = new Date();
 
@@ -30,11 +30,11 @@ export class TasksComponent implements OnInit {
 
   teamnames: any | undefined;
 
-  newTeamName = new FormControl('');
+  newTeamName = new UntypedFormControl('');
 
-  bottles = new FormControl(0);
+  bottles = new UntypedFormControl(0);
 
-  bottlecaps = new FormControl(0);
+  bottlecaps = new UntypedFormControl(0);
 
   currentTeam: Teams = {
     team_id: 0,
